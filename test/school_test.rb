@@ -46,4 +46,26 @@ class SchoolTest < Minitest::Test
     assert_equal '16:00', school1.end_time
     assert_equal '12:00', school2.end_time
   end
+
+  def test_if_school_is_full_time
+    school1 = School.new('9:00', 7)
+
+    assert_equal true, school1.is_full_time?
+  end
+
+  def test_can_students_be_added
+    school1 = School.new('9:00', 7)
+
+    school1.add_student_name("Aurora")
+    school1.add_student_name("tim")
+    school1.add_student_name("megan")
+
+    assert_equal ["Aurora", "Tim", "Megan"], school1.student_names
+  end
+
+  def test_if_time_conversion_works
+    school = School.new('9:00', 7)
+
+    assert_equal school.convert_end_time_to_clock_time , "4:00"
+  end
 end
